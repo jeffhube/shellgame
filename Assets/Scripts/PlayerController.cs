@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     private bool _canDoubleJump = false;
     private GameObject _light;
 
-    public Transform GroundCheck;
     public Transform ShellSocket;
     public SpriteRenderer ShellSpriteRenderer;
     public GameObject ShellPrefab;

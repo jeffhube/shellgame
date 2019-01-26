@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
 
                     if (ShellType == Shell.ShellType.Heavy)
                     {
+                        _rigidbody.mass = 6;
+                    }
+                    else
+                    {
                         _rigidbody.mass = 4;
                     }
                 }
@@ -65,12 +69,12 @@ public class PlayerController : MonoBehaviour
 
                 if (ShellType == Shell.ShellType.Heavy)
                 {
-                    shell.GetComponent<Rigidbody2D>().mass = 4;
+                    shell.GetComponent<Rigidbody2D>().mass = 3;
                 }
 
                 ShellType = Shell.ShellType.None;
                 ShellSpriteRenderer.sprite = null;
-                _rigidbody.mass = 1;
+                _rigidbody.mass = 3;
             }
         }
 

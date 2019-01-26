@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
         if (grounded && newVelocity.y <= 0 && Input.GetButton("Jump"))
         {
-            newVelocity.y += JUMP_VELOCITY;
+            newVelocity.y = JUMP_VELOCITY;
         }
 
         _rigidbody.velocity = newVelocity;

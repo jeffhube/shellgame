@@ -62,6 +62,11 @@ public class PlayerController : MonoBehaviour
                 ShellSpriteRenderer.sprite = null;
             }
         }
+
+        if (transform.position.y < -20)
+        {
+            Die();
+        }
     }
 
     private void OnGUI()
@@ -115,11 +120,21 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.GetComponent<SharkBehavior>() != null)
+        if (ShellType != Shell.ShellType.SharkResistant && col.gameObject.GetComponent<SharkBehavior>() != null)
         {
-            //TODO: Add a better death effect
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Die();
         }
+        if (col.gameObject.GetComponent<FlagBehavior>() != null)
+        {
+            //TODO: Add a better win effect
+            SceneManager.LoadScene("SampleScene");
+        }
+    }
+
+    private void Die()
+    {
+        //TODO: Add a better death effect
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void UpdateDirection(bool facingRight)

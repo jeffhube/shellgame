@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _boxCollider;
     private bool _canDoubleJump = false;
+    private GameObject _light;
 
     public Transform GroundCheck;
     public Transform ShellSocket;
     public SpriteRenderer ShellSpriteRenderer;
     public GameObject ShellPrefab;
+    public GameObject LightPrefab;
     public Shell.ShellType ShellType;
 
     public LayerMask WhatIsGround;
@@ -52,6 +54,10 @@ public class PlayerController : MonoBehaviour
                     {
                         _rigidbody.mass = 4;
                     }
+                    else if (ShellType == Shell.ShellType.Shiny)
+                    {
+                        _light = Instantiate(LightPrefab, ShellSocket);
+                    }
                 }
             }
             else
@@ -67,6 +73,11 @@ public class PlayerController : MonoBehaviour
                 if (ShellType == Shell.ShellType.Heavy)
                 {
                     shell.GetComponent<Rigidbody2D>().mass = 4;
+                }
+                if (ShellType == Shell.ShellType.Shiny)
+                {
+                    Instantiate(LightPrefab, shellObject.transform);
+                    Destroy(_light);
                 }
 
                 ShellType = Shell.ShellType.None;

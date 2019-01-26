@@ -82,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1879744078569664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.83, y: -1.17, z: 0.103515625}
+  m_LocalPosition: {x: 0, y: 0, z: 0.103515625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4947943601525646}
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1, y: 0.83}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -163,6 +163,8 @@ MonoBehaviour:
   ShellSocket: {fileID: 4264445185690892}
   ShellSpriteRenderer: {fileID: 212521513264530110}
   ShellPrefab: {fileID: 1084146317039614, guid: e2ac326ac6a163643abcc3bce8050090,
+    type: 2}
+  LightPrefab: {fileID: 1125653527445708, guid: 4192384d25a39294aa4330aa4d8a0df7,
     type: 2}
   ShellType: 0
   WhatIsGround:

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     private const float SPEED = 5.0f;
     private const float SPEEDY_SPEED = 9.0f;
-    private const float JUMP_VELOCITY = 6;
+    private const float JUMP_VELOCITY = 7.2f;
 
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _boxCollider;
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (ShellType == Shell.ShellType.DoubleJump && Input.GetButton("Jump") && newVelocity.y < JUMP_VELOCITY / 2 && _canDoubleJump)
+            if (ShellType == Shell.ShellType.DoubleJump && Input.GetButtonDown("Jump") && newVelocity.y < JUMP_VELOCITY / 2 && _canDoubleJump)
             {
                 _canDoubleJump = false;
                 newVelocity.y = JUMP_VELOCITY;

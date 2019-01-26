@@ -25,14 +25,19 @@ public class SharkBehavior : MonoBehaviour
 	{
 	    var attractor = FindObjectsOfType<Shell>().Where(s => s.Type == Shell.ShellType.SharkAttractant && (s.transform.position - transform.position).magnitude < 10).OrderBy(s=>(s.transform.position - transform.position).magnitude).Select(s=>s.gameObject).FirstOrDefault();
 
-	    if (attractor == null && GameObject.Find("Player").GetComponent<PlayerController>().ShellType == Shell.ShellType.SharkAttractant)
+	    if (attractor == null)
 	    {
-	        attractor = GameObject.Find("Player");
+	        var player = GameObject.Find("Player");
+	        if (player.GetComponent<PlayerController>().ShellType == Shell.ShellType.SharkAttractant &&
+	            (player.transform.position - transform.position).magnitude < 10)
+	        {
+	            attractor = player;
+	        }
 	    }
 
 	    if (attractor != null && _attractTarget == Vector2.zero)
 	    {
-	        _attractTarget = attractor.transform.position + (Vector3)Random.insideUnitCircle * 4;
+	        _attractTarget = attractor.transform.position + (Vector3)Random.insideUnitCircle * 2;
 	    }
 
         Vector2 destination = _outbound ? PatrolPoint : _startPosition;
@@ -49,7 +54,7 @@ public class SharkBehavior : MonoBehaviour
 	        _outbound = !_outbound;
 	        if (attractor != null)
 	        {
-	            _attractTarget = attractor.transform.position + (Vector3)Random.insideUnitCircle * 4;
+	            _attractTarget = attractor.transform.position + (Vector3)Random.insideUnitCircle * 2;
 	        }
         }
 	    else

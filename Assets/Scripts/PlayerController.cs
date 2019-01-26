@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (ShellType == Shell.ShellType.DoubleJump && Input.GetButton("Jump") && newVelocity.y < 0 && _canDoubleJump)
+            if (ShellType == Shell.ShellType.DoubleJump && Input.GetButton("Jump") && newVelocity.y < JUMP_VELOCITY / 2 && _canDoubleJump)
             {
                 _canDoubleJump = false;
                 newVelocity.y = JUMP_VELOCITY;

@@ -104,10 +104,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 tl = new Vector2(transform.position.x - _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2);
-        Vector2 br = new Vector2(transform.position.x + _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2 - 0.02f);
-        var colliders = Physics2D.OverlapAreaAll(tl, br, WhatIsGround);
-        bool grounded = (colliders.Any(x => x.bounds.max.y - _boxCollider.bounds.min.y < 0));
+        Vector2 bottomLeft = new Vector2(transform.position.x - _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2);
+        Vector2 bottomRight = new Vector2(transform.position.x + _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2);
+        var hits = Physics2D.RaycastAll(bottomLeft, Vector2.down, 0.02f, WhatIsGround).Concat(
+            Physics2D.RaycastAll(bottomRight, Vector2.down, 0.02f, WhatIsGround));
+        bool grounded = hits.Any(x => Vector2.Dot(x.normal, Vector2.up) > 0.45);
 
         float horizontal = Input.GetAxis("Horizontal");
         if (horizontal < 0)

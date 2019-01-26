@@ -35,10 +35,11 @@ public class PlayerController : MonoBehaviour
         {
             if (ShellType == Shell.ShellType.None)
             {
-                Collider2D collider = Physics2D.OverlapBox(transform.position, _boxCollider.size, 0, ShellLayer);
-                if (collider != null)
+                var colliders = Physics2D.OverlapBoxAll(transform.position, _boxCollider.size, 0, ShellLayer);
+                if (colliders.Length > 0)
                 {
-                    GameObject shellObject = collider.gameObject;
+                    Collider2D closest = colliders.OrderBy(x => (x.transform.position - transform.position).sqrMagnitude).First();
+                    GameObject shellObject = closest.gameObject;
                     SpriteRenderer spriteRenderer = shellObject.GetComponent<SpriteRenderer>();
                     Shell shell = shellObject.GetComponent<Shell>();
 

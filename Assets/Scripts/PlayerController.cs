@@ -58,7 +58,8 @@ public class PlayerController : MonoBehaviour
                     {
                         _rigidbody.mass = 4;
                     }
-                    else if (ShellType == Shell.ShellType.Shiny)
+
+                    if (ShellType == Shell.ShellType.Shiny)
                     {
                         _light = Instantiate(LightPrefab, ShellSocket);
                     }

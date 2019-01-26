@@ -319,6 +319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 453593219}
+  Bounds1: {x: 38.518612, y: -4.6855803}
+  Bounds2: {x: -17.081638, y: 8.970516}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

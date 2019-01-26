@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -95,7 +96,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (ShellType == Shell.ShellType.DoubleJump && Input.GetButtonDown("Jump") && _canDoubleJump)
+            if (ShellType == Shell.ShellType.DoubleJump && Input.GetButtonDown("ActivateShell") && _canDoubleJump)
             {
                 _canDoubleJump = false;
                 newVelocity.y = JUMP_VELOCITY;
@@ -103,6 +104,22 @@ public class PlayerController : MonoBehaviour
         }
 
         _rigidbody.velocity = newVelocity;
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (ShellType == Shell.ShellType.WallBreaking && col.gameObject.GetComponent<Breakable>() != null)
+        {
+            col.gameObject.GetComponent<Breakable>().Break();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.GetComponent<SharkBehavior>() != null)
+        {
+            //TODO: Add a better death effect
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private void UpdateDirection(bool facingRight)

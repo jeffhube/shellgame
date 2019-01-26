@@ -45,13 +45,11 @@ public class AutoSnap : EditorWindow
             var p = transform.transform.position;
             p.x = Round(p.x, snapValue);
             p.y = Round(p.y, snapValue);
-            p.z = Round(p.z, snapValue);
             transform.transform.position = p;
 
             var t = transform.transform.localScale;
             t.x = Round(t.x, scaleSnapValue);
             t.y = Round(t.y, scaleSnapValue);
-            t.z = Round(t.z, scaleSnapValue);
             transform.transform.localScale = t;
 
         }

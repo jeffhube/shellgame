@@ -777,8 +777,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1754834904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: -4, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalPosition: {x: 6.5, y: -3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -915,6 +915,7 @@ MonoBehaviour:
   Trigger: {fileID: 646358138}
   SlideDirection: 1
   SlideDistance: 2
+  Velocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &2017561677
 Prefab:
   m_ObjectHideFlags: 0

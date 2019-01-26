@@ -27,7 +27,17 @@ public class PlayerController : MonoBehaviour
     {
         bool grounded = null != Physics2D.OverlapCircle(GroundCheck.position, GROUND_RADIUS, WhatIsGround);
 
-        Vector2 newVelocity = new Vector2(Input.GetAxis("Horizontal") * SPEED, _rigidbody.velocity.y);
+        float horizontal = Input.GetAxis("Horizontal");
+        if (horizontal < 0)
+        {
+            UpdateDirection(facingRight: false);
+        }
+        else if (horizontal > 0)
+        {
+            UpdateDirection(facingRight: true);
+        }
+
+        Vector2 newVelocity = new Vector2(horizontal * SPEED, _rigidbody.velocity.y);
 
         if (grounded && newVelocity.y <= 0 && Input.GetButton("Jump"))
         {
@@ -35,5 +45,12 @@ public class PlayerController : MonoBehaviour
         }
 
         _rigidbody.velocity = newVelocity;
+    }
+
+    private void UpdateDirection(bool facingRight)
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = facingRight ? 1 : -1;
+        transform.localScale = scale;
     }
 }

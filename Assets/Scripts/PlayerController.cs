@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,6 @@ public class PlayerController : MonoBehaviour
 {
     private const float SPEED = 5.0f;
     private const float SPEEDY_SPEED = 9.0f;
-    private const float GROUND_RADIUS = 0.1f;
     private const float JUMP_VELOCITY = 6;
 
     private Rigidbody2D _rigidbody;
@@ -35,10 +35,11 @@ public class PlayerController : MonoBehaviour
         {
             if (ShellType == Shell.ShellType.None)
             {
-                Collider2D collider = Physics2D.OverlapBox(transform.position, _boxCollider.size, 0, ShellLayer);
-                if (collider != null)
+                var colliders = Physics2D.OverlapBoxAll(transform.position, _boxCollider.size, 0, ShellLayer);
+                if (colliders.Length > 0)
                 {
-                    GameObject shellObject = collider.gameObject;
+                    Collider2D closest = colliders.OrderBy(x => (x.transform.position - transform.position).sqrMagnitude).First();
+                    GameObject shellObject = closest.gameObject;
                     SpriteRenderer spriteRenderer = shellObject.GetComponent<SpriteRenderer>();
                     Shell shell = shellObject.GetComponent<Shell>();
 
@@ -46,6 +47,11 @@ public class PlayerController : MonoBehaviour
                     ShellSpriteRenderer.sprite = spriteRenderer.sprite;
 
                     Destroy(shellObject);
+
+                    if (ShellType == Shell.ShellType.Heavy)
+                    {
+                        _rigidbody.mass = 4;
+                    }
                 }
             }
             else
@@ -58,8 +64,14 @@ public class PlayerController : MonoBehaviour
                 Shell shell = shellObject.GetComponent<Shell>();
                 shell.Type = ShellType;
 
+                if (ShellType == Shell.ShellType.Heavy)
+                {
+                    shell.GetComponent<Rigidbody2D>().mass = 4;
+                }
+
                 ShellType = Shell.ShellType.None;
                 ShellSpriteRenderer.sprite = null;
+                _rigidbody.mass = 1;
             }
         }
 
@@ -76,7 +88,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool grounded = null != Physics2D.OverlapCircle(GroundCheck.position, GROUND_RADIUS, WhatIsGround);
+        Vector2 tl = new Vector2(transform.position.x - _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2);
+        Vector2 br = new Vector2(transform.position.x + _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2 - 0.02f);
+        var colliders = Physics2D.OverlapAreaAll(tl, br, WhatIsGround);
+        bool grounded = (colliders.Any(x => x.bounds.max.y - _boxCollider.bounds.min.y < 0));
 
         float horizontal = Input.GetAxis("Horizontal");
         if (horizontal < 0)

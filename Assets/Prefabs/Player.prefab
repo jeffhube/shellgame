@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 50495509671587756}
   - component: {fileID: 114240280906252896}
   - component: {fileID: 212552888234929200}
+  - component: {fileID: 114924068165027104}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -163,12 +164,25 @@ MonoBehaviour:
   ShellSpriteRenderer: {fileID: 212521513264530110}
   ShellPrefab: {fileID: 1084146317039614, guid: e2ac326ac6a163643abcc3bce8050090,
     type: 2}
+  ShellType: 0
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 1
   ShellLayer:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &114924068165027104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1879744078569664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48542dc23507154195a6de6f6982a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseOverlay: {fileID: 0}
 --- !u!212 &212521513264530110
 SpriteRenderer:
   m_ObjectHideFlags: 1

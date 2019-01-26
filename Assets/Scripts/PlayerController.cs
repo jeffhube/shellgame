@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private const float SPEED = 5.0f;
+    private const float SPEEDY_SPEED = 9.0f;
     private const float GROUND_RADIUS = 0.1f;
     private const float JUMP_VELOCITY = 6;
 
@@ -81,7 +82,8 @@ public class PlayerController : MonoBehaviour
             UpdateDirection(facingRight: true);
         }
 
-        Vector2 newVelocity = new Vector2(horizontal * SPEED, _rigidbody.velocity.y);
+        float speed = ShellType == Shell.ShellType.Speedy ? SPEEDY_SPEED : SPEED;
+        Vector2 newVelocity = new Vector2(horizontal * speed, _rigidbody.velocity.y);
 
         if (grounded)
         {

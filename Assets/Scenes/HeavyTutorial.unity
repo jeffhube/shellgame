@@ -443,8 +443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 453593219}
-  Bounds1: {x: 8.000206, y: -4.9719706}
-  Bounds2: {x: -7.9888463, y: 4.951029}
+  Bounds1: {x: 9.067448, y: -4.9031157}
+  Bounds2: {x: -8.642961, y: 6.0182686}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -560,7 +560,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4416428646398982, guid: 997053d32b02cf14bbae2ec9b9e3f001, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 997053d32b02cf14bbae2ec9b9e3f001, type: 2}

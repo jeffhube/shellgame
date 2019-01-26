@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,6 @@ public class PlayerController : MonoBehaviour
 {
     private const float SPEED = 5.0f;
     private const float SPEEDY_SPEED = 9.0f;
-    private const float GROUND_RADIUS = 0.1f;
     private const float JUMP_VELOCITY = 6;
 
     private Rigidbody2D _rigidbody;
@@ -76,7 +76,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool grounded = null != Physics2D.OverlapCircle(GroundCheck.position, GROUND_RADIUS, WhatIsGround);
+        Vector2 tl = new Vector2(transform.position.x - _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2);
+        Vector2 br = new Vector2(transform.position.x + _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2 - 0.02f);
+        var colliders = Physics2D.OverlapAreaAll(tl, br, WhatIsGround);
+        bool grounded = (colliders.Any(x => x.bounds.max.y - _boxCollider.bounds.min.y < 0));
 
         float horizontal = Input.GetAxis("Horizontal");
         if (horizontal < 0)

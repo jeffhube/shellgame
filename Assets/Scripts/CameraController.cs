@@ -37,8 +37,24 @@ public class CameraController : MonoBehaviour
             float horizontalExtents = verticalExtents * Screen.width / Screen.height;
             Vector2 min = new Vector2(Mathf.Min(Bounds1.x, Bounds2.x), Mathf.Min(Bounds1.y, Bounds2.y));
             Vector2 max = new Vector2(Mathf.Max(Bounds1.x, Bounds2.x), Mathf.Max(Bounds1.y, Bounds2.y));
-            x = Mathf.Clamp(x, min.x + horizontalExtents, max.x - horizontalExtents);
-            y = Mathf.Clamp(y, min.y + verticalExtents, max.y - verticalExtents);           
+
+            if (horizontalExtents * 2 > max.x - min.x)
+            {
+                x = (max.x + min.x) / 2;
+            }
+            else
+            {
+                x = Mathf.Clamp(x, min.x + horizontalExtents, max.x - horizontalExtents);
+            }
+
+            if (verticalExtents * 2 > max.y - min.y)
+            {
+                y = (max.y + min.y) / 2;
+            }
+            else
+            {
+                y = Mathf.Clamp(y, min.y + verticalExtents, max.y - verticalExtents);
+            }
         }
 
         transform.position = new Vector3(x, y, thisPosition.z);

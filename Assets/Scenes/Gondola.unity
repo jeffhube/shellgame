@@ -113,25 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &71708967 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1767135066604190, guid: c5533c5f1f13c4941bb2a247e058cad0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1686875355}
---- !u!114 &71708968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 71708967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed87377d18b4134aac6f102d6ac0e6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Trigger: {fileID: 1816011752}
-  SlideDirection: 0
-  SlideDistance: 25
 --- !u!1001 &136959066
 Prefab:
   m_ObjectHideFlags: 0
@@ -600,35 +581,28 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4315240314428088, guid: c5533c5f1f13c4941bb2a247e058cad0, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
+    - target: {fileID: 114416180260635000, guid: c5533c5f1f13c4941bb2a247e058cad0,
+        type: 2}
+      propertyPath: Trigger
+      value: 
+      objectReference: {fileID: 1816011752}
+    - target: {fileID: 252012970659530562, guid: c5533c5f1f13c4941bb2a247e058cad0,
+        type: 2}
+      propertyPath: m_UseFriction
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4315240314428088, guid: c5533c5f1f13c4941bb2a247e058cad0, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
+    - target: {fileID: 252012970659530562, guid: c5533c5f1f13c4941bb2a247e058cad0,
+        type: 2}
+      propertyPath: m_UseBounce
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61345019943579686, guid: c5533c5f1f13c4941bb2a247e058cad0,
         type: 2}
-      propertyPath: m_Offset.x
-      value: 0.015660286
+      propertyPath: m_UsedByEffector
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 61345019943579686, guid: c5533c5f1f13c4941bb2a247e058cad0,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 1.964098
-      objectReference: {fileID: 0}
-    - target: {fileID: 61345019943579686, guid: c5533c5f1f13c4941bb2a247e058cad0,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 0.015660286
-      objectReference: {fileID: 0}
-    - target: {fileID: 61345019943579686, guid: c5533c5f1f13c4941bb2a247e058cad0,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.9663906
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 252012970659530562, guid: c5533c5f1f13c4941bb2a247e058cad0, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: c5533c5f1f13c4941bb2a247e058cad0, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1733384459

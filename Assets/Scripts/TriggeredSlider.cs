@@ -9,6 +9,7 @@ public class TriggeredSlider : MonoBehaviour
     public DepressorBehavior Trigger;
     public Direction SlideDirection;
     public float SlideDistance;
+    public Vector3 Velocity;
 
     private Vector3 _initialPosition;
     private Vector3 _targetPosition;
@@ -37,11 +38,13 @@ public class TriggeredSlider : MonoBehaviour
 	    if (movement.magnitude < 5 * Time.deltaTime)
 	    {
 	        transform.position = destination;
+            Velocity = Vector3.zero;
 	    }
 	    else
 	    {
 	        transform.position += (Vector3)movement.normalized * 5 * Time.deltaTime;
-	    }
+            Velocity = (Vector3)movement.normalized * 5;
+        }
 
     }
 }

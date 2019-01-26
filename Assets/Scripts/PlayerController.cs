@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
             Physics2D.RaycastAll(bottomRight, Vector2.down, 0.02f, WhatIsGround));
         bool grounded = hits.Any(x => Vector2.Dot(x.normal, Vector2.up) > 0.45);
 
+
         float horizontal = Input.GetAxis("Horizontal");
         if (horizontal < 0)
         {
@@ -122,6 +123,13 @@ public class PlayerController : MonoBehaviour
 
         float speed = ShellType == Shell.ShellType.Speedy ? SPEEDY_SPEED : SPEED;
         Vector2 newVelocity = new Vector2(horizontal * speed, _rigidbody.velocity.y);
+
+        var slider = hits.Where(h=> h.collider.gameObject.GetComponent<TriggeredSlider>() != null).Select(h => h.collider.gameObject.GetComponent<TriggeredSlider>()).FirstOrDefault();
+
+        if (grounded && slider != null && slider.Velocity != Vector3.zero)
+        {
+            newVelocity += (Vector2)slider.Velocity;
+        }
 
         if (grounded)
         {

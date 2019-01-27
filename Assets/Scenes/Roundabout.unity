@@ -32129,7 +32129,7 @@ Prefab:
     - target: {fileID: 114918983598478548, guid: 01541adb7e1bd2f4798ddc2e3f0055a0,
         type: 2}
       propertyPath: PatrolPoint.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01541adb7e1bd2f4798ddc2e3f0055a0, type: 2}
@@ -32932,7 +32932,7 @@ Prefab:
     - target: {fileID: 114918983598478548, guid: 01541adb7e1bd2f4798ddc2e3f0055a0,
         type: 2}
       propertyPath: PatrolPoint.y
-      value: -1
+      value: -1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01541adb7e1bd2f4798ddc2e3f0055a0, type: 2}

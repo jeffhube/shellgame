@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public const float MAX_HORIZONTAL_OFFSET = 5.0f;
+    public const float MAX_HORIZONTAL_OFFSET = 2.0f;
     public const float MAX_VERTICAL_OFFSET = 2.5f;
 
     private Camera _camera;

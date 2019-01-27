@@ -245,6 +245,7 @@ MonoBehaviour:
   fall: {fileID: 8300000, guid: 4ca8765136ff6f84f8bcd9a5c3f3fe91, type: 3}
   breakApart: {fileID: 8300000, guid: bc16e6797bd610345bbc6113560670a3, type: 3}
   chomp: {fileID: 8300000, guid: e79f8d58fb584a74996d06ff736dbee3, type: 3}
+  cheer: {fileID: 8300000, guid: 5aaec7ffae6de9047b9fd231c0e4ee5b, type: 3}
 --- !u!114 &114924068165027104
 MonoBehaviour:
   m_ObjectHideFlags: 1

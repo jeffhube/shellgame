@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip fall;
     public AudioClip breakApart;
     public AudioClip chomp;
+    public AudioClip cheer;
 
     void Start()
     {

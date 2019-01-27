@@ -7,12 +7,17 @@ public class WinBehavior : MonoBehaviour
 {
 
     private float _transitionTimer;
+    private AudioSource _audioSource;
+
+    public AudioClip cheering;
 
 	// Use this for initialization
 	void Start ()
     {
 		_transitionTimer = 4;
-	}
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.PlayOneShot(cheering);
+    }
 	
 	// Update is called once per frame
 	void Update ()

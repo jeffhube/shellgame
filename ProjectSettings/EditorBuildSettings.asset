@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/TitleScreen.unity
+    guid: d90d4b4d2968e3b4c84732d64ce82437
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: 5234e840acd002d4eb3533f93017640c
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DoubleJumpTutorial.unity
     guid: 56a8753f022dc7c41b5ef63f2518ed99
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

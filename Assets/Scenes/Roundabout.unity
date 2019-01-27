@@ -32180,6 +32180,11 @@ Prefab:
       propertyPath: m_DrawMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 198061462161726766, guid: d0ccad1e7ee36694e82861717a446af5,
+        type: 2}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 1.0801239
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ccad1e7ee36694e82861717a446af5, type: 2}
   m_IsPrefabAsset: 0
@@ -32266,6 +32271,11 @@ Prefab:
         type: 2}
       propertyPath: m_DrawMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198061462161726766, guid: d0ccad1e7ee36694e82861717a446af5,
+        type: 2}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.9688119
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ccad1e7ee36694e82861717a446af5, type: 2}

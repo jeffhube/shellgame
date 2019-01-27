@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _boxCollider;
     private bool _canDoubleJump = false;
+    private bool _jumped;
     private GameObject _light;
 
     public Transform ShellSocket;
@@ -132,15 +133,21 @@ public class PlayerController : MonoBehaviour
 
         if (grounded)
         {
+            _jumped = false;
             _canDoubleJump = true;
             if (Input.GetButton("Jump") && newVelocity.y <= 0)
             {
                 newVelocity.y = JUMP_VELOCITY;
+                _jumped = true;
             }
         }
         else
         {
-            if (ShellType == Shell.ShellType.DoubleJump && Input.GetButtonDown("Jump") && newVelocity.y < JUMP_VELOCITY / 2 && _canDoubleJump)
+            if (_jumped && !Input.GetButton("Jump"))
+            {
+                _jumped = false;
+            }
+            if (ShellType == Shell.ShellType.DoubleJump && !_jumped && Input.GetButton("Jump") && newVelocity.y < JUMP_VELOCITY / 2.5f && _canDoubleJump)
             {
                 _canDoubleJump = false;
                 newVelocity.y = JUMP_VELOCITY;

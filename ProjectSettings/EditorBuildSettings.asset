@@ -32,4 +32,31 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/RunRunRun.unity
+    guid: 28bd0f1a7919a8b4298d84b72ce88f61
+  - enabled: 1
+    path: Assets/Scenes/Roundabout.unity
+    guid: c6a77d275cda7ab40a1b525ef4920af5
+  - enabled: 1
+    path: Assets/Scenes/JumpInThePit.unity
+    guid: a81332a8feead4448944416e54021180
+  - enabled: 1
+    path: Assets/Scenes/Gondola.unity
+    guid: 7c55df9baeeed434d8b859e8935351d1
+  - enabled: 1
+    path: Assets/Scenes/DooDooDooDooDooDoo.unity
+    guid: ba412f5b52751fc449885e234d2faddd
+  - enabled: 1
+    path: Assets/Scenes/BuriedTreasure.unity
+    guid: 609322d8917c22440bb3e111edbc67ad
+  - enabled: 1
+    path: Assets/Scenes/BridgeDilemma.unity
+    guid: 4677ccd14c5816e49bff7d81312a4901
+  - enabled: 1
+    path: Assets/Scenes/SharkClimb.unity
+    guid: ce581af090dfec44b974a5c3f80f4ae6
+  - enabled: 1
+    path: Assets/Scenes/TheJourneyBegins.unity
+    guid: dd9c10c432421704a9b6ae5d4b9f89ea
   m_configObjects: {}

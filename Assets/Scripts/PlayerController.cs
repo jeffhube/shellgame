@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 GameObject shellObject = Instantiate(ShellPrefab);
-                shellObject.transform.position = ShellSocket.position;
+                shellObject.transform.position = ShellSocket.position - ShellSocket.position.z * Vector3.forward;
 
                 SpriteRenderer spriteRenderer = shellObject.GetComponent<SpriteRenderer>();
                 spriteRenderer.sprite = ShellSpriteRenderer.sprite;

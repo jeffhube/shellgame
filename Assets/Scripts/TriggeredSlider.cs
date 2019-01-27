@@ -10,6 +10,7 @@ public class TriggeredSlider : MonoBehaviour
     public Direction SlideDirection;
     public float SlideDistance;
     public Vector3 Velocity;
+    public float Speed = 5;
 
     private Vector3 _initialPosition;
     private Vector3 _targetPosition;
@@ -35,15 +36,15 @@ public class TriggeredSlider : MonoBehaviour
 	    Vector3 destination = Trigger.Triggered ? _targetPosition : _initialPosition;
 
 	    Vector2 movement = destination - transform.position;
-	    if (movement.magnitude < 5 * Time.deltaTime)
+	    if (movement.magnitude < Speed * Time.deltaTime)
 	    {
 	        transform.position = destination;
             Velocity = Vector3.zero;
 	    }
 	    else
 	    {
-	        transform.position += (Vector3)movement.normalized * 5 * Time.deltaTime;
-            Velocity = (Vector3)movement.normalized * 5;
+	        transform.position += (Vector3)movement.normalized * Speed * Time.deltaTime;
+            Velocity = (Vector3)movement.normalized * Speed;
         }
 
     }

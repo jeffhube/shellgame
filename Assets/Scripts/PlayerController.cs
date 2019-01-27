@@ -149,12 +149,23 @@ public class PlayerController : MonoBehaviour
 
         _rigidbody.velocity = newVelocity;
     }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        OnCollisionEnter2D(col);
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (ShellType == Shell.ShellType.WallBreaking && col.gameObject.GetComponent<Breakable>() != null)
         {
             col.gameObject.GetComponent<Breakable>().Break();
         }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        OnTriggerEnter2D(other);
     }
 
     void OnTriggerEnter2D(Collider2D col)

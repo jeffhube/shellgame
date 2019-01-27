@@ -6,10 +6,25 @@ public class GUIController : MonoBehaviour {
     //Fields
     public GameObject pauseOverlay;
 
-	void Update ()
+    void Start()
+    {
+        if (pauseOverlay == null)
+        {
+            pauseOverlay = GameObject.Find("PauseCanvas");
+        }
+
+        if (pauseOverlay != null)
+        {
+            pauseOverlay.SetActive(false);
+        }
+    }
+
+    void Update ()
     {
         //Various calls for different keys. Triggers can be easily
         //changed/moved
+
+
 
 		//Calls togglepause if key is pressed
         if (Input.GetKeyDown("tab"))

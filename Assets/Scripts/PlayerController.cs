@@ -25,14 +25,34 @@ public class PlayerController : MonoBehaviour
     public LayerMask WhatIsGround;
     public LayerMask ShellLayer;
 
+    private AudioSource _audioSource;
+
+    public AudioClip jump;
+    public AudioClip equip;
+    public AudioClip unequip;
+    public AudioClip fall;
+    public AudioClip breakApart;
+    public AudioClip chomp;
+    public AudioClip cheer;
+
+    private bool _dead;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _audioSource = GetComponent<AudioSource>();
+
+        _dead = false;
     }
 
     void Update()
     {
+        if (_dead)
+        {
+            return;
+        }
+
         if (Input.GetButtonDown("Use"))
         {
             if (ShellType == Shell.ShellType.None)
@@ -49,6 +69,8 @@ public class PlayerController : MonoBehaviour
                     ShellSpriteRenderer.sprite = spriteRenderer.sprite;
 
                     Destroy(shellObject);
+
+                    _audioSource.PlayOneShot(equip);
 
                     if (ShellType == Shell.ShellType.Heavy)
                     {
@@ -68,7 +90,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 GameObject shellObject = Instantiate(ShellPrefab);
-                shellObject.transform.position = ShellSocket.position;
+                shellObject.transform.position = ShellSocket.position - ShellSocket.position.z * Vector3.forward;
 
                 SpriteRenderer spriteRenderer = shellObject.GetComponent<SpriteRenderer>();
                 spriteRenderer.sprite = ShellSpriteRenderer.sprite;
@@ -88,9 +110,18 @@ public class PlayerController : MonoBehaviour
                 ShellType = Shell.ShellType.None;
                 ShellSpriteRenderer.sprite = null;
                 _rigidbody.mass = 3;
+
+                _audioSource.PlayOneShot(unequip);
             }
         }
 
+        if (transform.position.y < -12)
+        {
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.PlayOneShot(fall);
+            }
+        }
         if (transform.position.y < -20)
         {
             Die();
@@ -104,6 +135,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_dead)
+        {
+            return;
+        }
+
+
         Vector2 bottomLeft = new Vector2(transform.position.x - _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2);
         Vector2 bottomRight = new Vector2(transform.position.x + _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2);
         var hits = Physics2D.RaycastAll(bottomLeft, Vector2.down, 0.02f, WhatIsGround).Concat(
@@ -137,6 +174,7 @@ public class PlayerController : MonoBehaviour
             _canDoubleJump = true;
             if (Input.GetButton("Jump") && newVelocity.y <= 0)
             {
+                _audioSource.PlayOneShot(jump);
                 newVelocity.y = JUMP_VELOCITY;
                 _jumped = true;
             }
@@ -149,6 +187,7 @@ public class PlayerController : MonoBehaviour
             }
             if (ShellType == Shell.ShellType.DoubleJump && !_jumped && Input.GetButton("Jump") && newVelocity.y < JUMP_VELOCITY / 2.5f && _canDoubleJump)
             {
+                _audioSource.PlayOneShot(jump);
                 _canDoubleJump = false;
                 newVelocity.y = JUMP_VELOCITY;
             }
@@ -166,6 +205,7 @@ public class PlayerController : MonoBehaviour
     {
         if (ShellType == Shell.ShellType.WallBreaking && col.gameObject.GetComponent<Breakable>() != null)
         {
+            _audioSource.PlayOneShot(breakApart, 0.4f);
             col.gameObject.GetComponent<Breakable>().Break();
         }
     }
@@ -177,20 +217,47 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (_dead)
+        {
+            return;
+        }
+
         if (ShellType != Shell.ShellType.SharkResistant && col.gameObject.GetComponent<SharkBehavior>() != null)
         {
-            Die();
+            _audioSource.PlayOneShot(chomp);
+            Die(0.4f);
         }
         if (col.gameObject.GetComponent<FlagBehavior>() != null)
         {
-            //TODO: Add a better win effect
             SceneManager.LoadScene("SampleScene");
         }
     }
 
-    private void Die()
+    private void Die(float time = 0)
     {
-        //TODO: Add a better death effect
+        if (_dead)
+        {
+            return;
+        }
+
+        _dead = true;
+
+        if (time <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            StartCoroutine(FinishDeath(time));
+        }
+
+    }
+
+    private IEnumerator FinishDeath(float time)
+    {
+        ShellSpriteRenderer.sprite = null;
+        GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(time);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

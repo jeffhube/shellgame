@@ -35,17 +35,24 @@ public class PlayerController : MonoBehaviour
     public AudioClip chomp;
     public AudioClip cheer;
 
+    private bool _dead;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _audioSource = GetComponent<AudioSource>();
 
-
+        _dead = false;
     }
 
     void Update()
     {
+        if (_dead)
+        {
+            return;
+        }
+
         if (Input.GetButtonDown("Use"))
         {
             if (ShellType == Shell.ShellType.None)
@@ -128,6 +135,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_dead)
+        {
+            return;
+        }
+
+
         Vector2 bottomLeft = new Vector2(transform.position.x - _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2);
         Vector2 bottomRight = new Vector2(transform.position.x + _boxCollider.size.x / 2, transform.position.y - _boxCollider.size.y / 2);
         var hits = Physics2D.RaycastAll(bottomLeft, Vector2.down, 0.02f, WhatIsGround).Concat(
@@ -204,21 +217,47 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (_dead)
+        {
+            return;
+        }
+
         if (ShellType != Shell.ShellType.SharkResistant && col.gameObject.GetComponent<SharkBehavior>() != null)
         {
             _audioSource.PlayOneShot(chomp);
-            Die();
+            Die(0.4f);
         }
         if (col.gameObject.GetComponent<FlagBehavior>() != null)
         {
-            //TODO: Add a better win effect
             SceneManager.LoadScene("SampleScene");
         }
     }
 
-    private void Die()
+    private void Die(float time = 0)
     {
-        //TODO: Add a better death effect
+        if (_dead)
+        {
+            return;
+        }
+
+        _dead = true;
+
+        if (time <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            StartCoroutine(FinishDeath(time));
+        }
+
+    }
+
+    private IEnumerator FinishDeath(float time)
+    {
+        ShellSpriteRenderer.sprite = null;
+        GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(time);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

@@ -128,11 +128,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(10, 10, 200, 40), this.ShellType.ToString());
-    }
-
     private void FixedUpdate()
     {
         if (_dead)

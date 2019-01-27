@@ -68,4 +68,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KeepUp.unity
     guid: d967dd1fc131c034aa80ba4f9f34d1e9
+  - enabled: 1
+    path: Assets/Scenes/DarkDescent.unity
+    guid: 7f2c72329706e5646b29be9189539752
   m_configObjects: {}

@@ -50,7 +50,7 @@ public class SharkBehavior : MonoBehaviour
 	    Vector2 movement = destination - (Vector2)transform.position;
 	    if (movement.magnitude < Speed * Time.deltaTime)
 	    {
-	        transform.position = destination;
+	        transform.position = new Vector3(destination.x, destination.y, transform.position.z);
 	        _outbound = !_outbound;
 	        if (attractor != null)
 	        {

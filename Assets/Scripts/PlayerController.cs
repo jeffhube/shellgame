@@ -25,10 +25,22 @@ public class PlayerController : MonoBehaviour
     public LayerMask WhatIsGround;
     public LayerMask ShellLayer;
 
+    private AudioSource _audioSource;
+
+    public AudioClip jump;
+    public AudioClip equip;
+    public AudioClip unequip;
+    public AudioClip fall;
+    public AudioClip breakApart;
+    public AudioClip chomp;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _audioSource = GetComponent<AudioSource>();
+
+
     }
 
     void Update()
@@ -49,6 +61,8 @@ public class PlayerController : MonoBehaviour
                     ShellSpriteRenderer.sprite = spriteRenderer.sprite;
 
                     Destroy(shellObject);
+
+                    _audioSource.PlayOneShot(equip);
 
                     if (ShellType == Shell.ShellType.Heavy)
                     {
@@ -88,9 +102,18 @@ public class PlayerController : MonoBehaviour
                 ShellType = Shell.ShellType.None;
                 ShellSpriteRenderer.sprite = null;
                 _rigidbody.mass = 3;
+
+                _audioSource.PlayOneShot(unequip);
             }
         }
 
+        if (transform.position.y < -12)
+        {
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.PlayOneShot(fall);
+            }
+        }
         if (transform.position.y < -20)
         {
             Die();
@@ -137,6 +160,7 @@ public class PlayerController : MonoBehaviour
             _canDoubleJump = true;
             if (Input.GetButton("Jump") && newVelocity.y <= 0)
             {
+                _audioSource.PlayOneShot(jump);
                 newVelocity.y = JUMP_VELOCITY;
                 _jumped = true;
             }
@@ -149,6 +173,7 @@ public class PlayerController : MonoBehaviour
             }
             if (ShellType == Shell.ShellType.DoubleJump && !_jumped && Input.GetButton("Jump") && newVelocity.y < JUMP_VELOCITY / 2.5f && _canDoubleJump)
             {
+                _audioSource.PlayOneShot(jump);
                 _canDoubleJump = false;
                 newVelocity.y = JUMP_VELOCITY;
             }
@@ -166,6 +191,7 @@ public class PlayerController : MonoBehaviour
     {
         if (ShellType == Shell.ShellType.WallBreaking && col.gameObject.GetComponent<Breakable>() != null)
         {
+            _audioSource.PlayOneShot(breakApart, 0.4f);
             col.gameObject.GetComponent<Breakable>().Break();
         }
     }
@@ -179,6 +205,7 @@ public class PlayerController : MonoBehaviour
     {
         if (ShellType != Shell.ShellType.SharkResistant && col.gameObject.GetComponent<SharkBehavior>() != null)
         {
+            _audioSource.PlayOneShot(chomp);
             Die();
         }
         if (col.gameObject.GetComponent<FlagBehavior>() != null)

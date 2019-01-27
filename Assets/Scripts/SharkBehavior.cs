@@ -63,8 +63,14 @@ public class SharkBehavior : MonoBehaviour
 	    }
 
 
-	    transform.localScale = new Vector3(-1 * Mathf.Sign(movement.x),1,1);
+	    var scale = transform.localScale;
 
+	    if (Mathf.Sign(scale.x) * Mathf.Sign(movement.x) > 0)
+	    {
+	        scale.x *= -1;
+	        transform.localScale = scale;
+	    }
+        
 	    var angle = Mathf.Rad2Deg * Mathf.Atan2(movement.y, movement.x) + 5f * Mathf.Sin(Time.time * 3 * Speed);
 
 	    if (movement.x < 0)

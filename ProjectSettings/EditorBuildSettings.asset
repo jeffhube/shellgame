@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DarkDescent.unity
     guid: 7f2c72329706e5646b29be9189539752
+  - enabled: 1
+    path: Assets/Scenes/HeavyTutorial.unity
+    guid: fc78dfcfc0f8107419ba4e218a93ea6d
   m_configObjects: {}

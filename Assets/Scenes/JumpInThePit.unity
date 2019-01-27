@@ -10964,7 +10964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 1169576221}
   Bounds1: {x: -10, y: 6}
-  Bounds2: {x: 30.5, y: -10.5}
+  Bounds2: {x: 19.99888, y: -11.006744}
 --- !u!1001 &2015198697
 Prefab:
   m_ObjectHideFlags: 0

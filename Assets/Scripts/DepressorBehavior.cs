@@ -16,6 +16,6 @@ public class DepressorBehavior : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    Triggered = _slider.jointTranslation >= 0.95f * _slider.limits.max;
+	    Triggered = _slider.jointTranslation >= 0.90f * _slider.limits.max;
 	}
 }

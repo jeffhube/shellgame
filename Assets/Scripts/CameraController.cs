@@ -14,6 +14,8 @@ public class CameraController : MonoBehaviour
     public Vector2 Bounds1;
     public Vector2 Bounds2;
 
+    public Vector2 Offset;    
+
     void Start()
     {
         _camera = GetComponent<Camera>();
@@ -30,7 +32,7 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 thisPosition = transform.position;
-        Vector3 targetPosition = Target.transform.position;
+        Vector3 targetPosition = Target.transform.position + new Vector3(Offset.x, Offset.y, 0);
         float x = Mathf.Clamp(thisPosition.x, targetPosition.x - MAX_HORIZONTAL_OFFSET, targetPosition.x + MAX_HORIZONTAL_OFFSET);
         float y = Mathf.Clamp(thisPosition.y, targetPosition.y - MAX_VERTICAL_OFFSET, targetPosition.y + MAX_VERTICAL_OFFSET);
 

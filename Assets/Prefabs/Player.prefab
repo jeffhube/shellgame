@@ -139,7 +139,7 @@ MonoBehaviour:
   ShellType: 0
   WhatIsGround:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1025
   ShellLayer:
     serializedVersion: 2
     m_Bits: 512

@@ -171,6 +171,11 @@ Prefab:
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 212540636725152724, guid: d0ccad1e7ee36694e82861717a446af5,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ccad1e7ee36694e82861717a446af5, type: 2}
   m_IsPrefabAsset: 0
@@ -10565,6 +10570,11 @@ Prefab:
       propertyPath: m_Size.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 212540636725152724, guid: d0ccad1e7ee36694e82861717a446af5,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ccad1e7ee36694e82861717a446af5, type: 2}
   m_IsPrefabAsset: 0
@@ -11128,6 +11138,11 @@ Prefab:
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 212540636725152724, guid: d0ccad1e7ee36694e82861717a446af5,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ccad1e7ee36694e82861717a446af5, type: 2}
   m_IsPrefabAsset: 0
@@ -11140,7 +11155,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4621773446134774, guid: d0ccad1e7ee36694e82861717a446af5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4621773446134774, guid: d0ccad1e7ee36694e82861717a446af5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11187,6 +11202,11 @@ Prefab:
     - target: {fileID: 61155902364493232, guid: d0ccad1e7ee36694e82861717a446af5,
         type: 2}
       propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212540636725152724, guid: d0ccad1e7ee36694e82861717a446af5,
+        type: 2}
+      propertyPath: m_Size.x
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
